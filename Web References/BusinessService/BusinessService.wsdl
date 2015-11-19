@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://ws.smartRestaurant.net" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://ws.smartRestaurant.net" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.smartRestaurant.net">
+      <s:element name="GetSalesReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="empType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSalesReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSalesReportResult" type="s0:ArrayOfDataStream" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDataStream">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DataStream" nillable="true" type="s0:DataStream" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DataStream">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Column" type="s0:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInvoiceReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="empType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvoiceReportResult" type="s0:ArrayOfDataStream" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintInvoiceReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="empType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintInvoiceReportResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetInvoiceSummaryReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="empType" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceSummaryReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvoiceSummaryReportResult" type="s0:ArrayOfDataStream" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateInvoiceHidden">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="invoiceID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="hidden" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateInvoiceHiddenResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PrintSummaryMenuType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintSummaryMenuTypeResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="PrintSummaryReceive">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintSummaryReceiveResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ExportInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="toDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExportInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExportInvoiceResult" type="s0:ArrayOfDataStream" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteSelected">
+        <s:complexType />
+      </s:element>
+      <s:element name="DeleteSelectedResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="BackupDatabase">
+        <s:complexType />
+      </s:element>
+      <s:element name="BackupDatabaseResponse">
+        <s:complexType />
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="GetSalesReportSoapIn">
+    <part name="parameters" element="s0:GetSalesReport" />
+  </message>
+  <message name="GetSalesReportSoapOut">
+    <part name="parameters" element="s0:GetSalesReportResponse" />
+  </message>
+  <message name="GetInvoiceReportSoapIn">
+    <part name="parameters" element="s0:GetInvoiceReport" />
+  </message>
+  <message name="GetInvoiceReportSoapOut">
+    <part name="parameters" element="s0:GetInvoiceReportResponse" />
+  </message>
+  <message name="PrintInvoiceReportSoapIn">
+    <part name="parameters" element="s0:PrintInvoiceReport" />
+  </message>
+  <message name="PrintInvoiceReportSoapOut">
+    <part name="parameters" element="s0:PrintInvoiceReportResponse" />
+  </message>
+  <message name="GetInvoiceSummaryReportSoapIn">
+    <part name="parameters" element="s0:GetInvoiceSummaryReport" />
+  </message>
+  <message name="GetInvoiceSummaryReportSoapOut">
+    <part name="parameters" element="s0:GetInvoiceSummaryReportResponse" />
+  </message>
+  <message name="UpdateInvoiceHiddenSoapIn">
+    <part name="parameters" element="s0:UpdateInvoiceHidden" />
+  </message>
+  <message name="UpdateInvoiceHiddenSoapOut">
+    <part name="parameters" element="s0:UpdateInvoiceHiddenResponse" />
+  </message>
+  <message name="PrintSummaryMenuTypeSoapIn">
+    <part name="parameters" element="s0:PrintSummaryMenuType" />
+  </message>
+  <message name="PrintSummaryMenuTypeSoapOut">
+    <part name="parameters" element="s0:PrintSummaryMenuTypeResponse" />
+  </message>
+  <message name="PrintSummaryReceiveSoapIn">
+    <part name="parameters" element="s0:PrintSummaryReceive" />
+  </message>
+  <message name="PrintSummaryReceiveSoapOut">
+    <part name="parameters" element="s0:PrintSummaryReceiveResponse" />
+  </message>
+  <message name="ExportInvoiceSoapIn">
+    <part name="parameters" element="s0:ExportInvoice" />
+  </message>
+  <message name="ExportInvoiceSoapOut">
+    <part name="parameters" element="s0:ExportInvoiceResponse" />
+  </message>
+  <message name="DeleteSelectedSoapIn">
+    <part name="parameters" element="s0:DeleteSelected" />
+  </message>
+  <message name="DeleteSelectedSoapOut">
+    <part name="parameters" element="s0:DeleteSelectedResponse" />
+  </message>
+  <message name="BackupDatabaseSoapIn">
+    <part name="parameters" element="s0:BackupDatabase" />
+  </message>
+  <message name="BackupDatabaseSoapOut">
+    <part name="parameters" element="s0:BackupDatabaseResponse" />
+  </message>
+  <portType name="BusinessServiceSoap">
+    <operation name="GetSalesReport">
+      <input message="s0:GetSalesReportSoapIn" />
+      <output message="s0:GetSalesReportSoapOut" />
+    </operation>
+    <operation name="GetInvoiceReport">
+      <input message="s0:GetInvoiceReportSoapIn" />
+      <output message="s0:GetInvoiceReportSoapOut" />
+    </operation>
+    <operation name="PrintInvoiceReport">
+      <input message="s0:PrintInvoiceReportSoapIn" />
+      <output message="s0:PrintInvoiceReportSoapOut" />
+    </operation>
+    <operation name="GetInvoiceSummaryReport">
+      <input message="s0:GetInvoiceSummaryReportSoapIn" />
+      <output message="s0:GetInvoiceSummaryReportSoapOut" />
+    </operation>
+    <operation name="UpdateInvoiceHidden">
+      <input message="s0:UpdateInvoiceHiddenSoapIn" />
+      <output message="s0:UpdateInvoiceHiddenSoapOut" />
+    </operation>
+    <operation name="PrintSummaryMenuType">
+      <input message="s0:PrintSummaryMenuTypeSoapIn" />
+      <output message="s0:PrintSummaryMenuTypeSoapOut" />
+    </operation>
+    <operation name="PrintSummaryReceive">
+      <input message="s0:PrintSummaryReceiveSoapIn" />
+      <output message="s0:PrintSummaryReceiveSoapOut" />
+    </operation>
+    <operation name="ExportInvoice">
+      <input message="s0:ExportInvoiceSoapIn" />
+      <output message="s0:ExportInvoiceSoapOut" />
+    </operation>
+    <operation name="DeleteSelected">
+      <input message="s0:DeleteSelectedSoapIn" />
+      <output message="s0:DeleteSelectedSoapOut" />
+    </operation>
+    <operation name="BackupDatabase">
+      <input message="s0:BackupDatabaseSoapIn" />
+      <output message="s0:BackupDatabaseSoapOut" />
+    </operation>
+  </portType>
+  <binding name="BusinessServiceSoap" type="s0:BusinessServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetSalesReport">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetSalesReport" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetInvoiceReport">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetInvoiceReport" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PrintInvoiceReport">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/PrintInvoiceReport" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetInvoiceSummaryReport">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetInvoiceSummaryReport" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="UpdateInvoiceHidden">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/UpdateInvoiceHidden" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PrintSummaryMenuType">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/PrintSummaryMenuType" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PrintSummaryReceive">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/PrintSummaryReceive" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ExportInvoice">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/ExportInvoice" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="DeleteSelected">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/DeleteSelected" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="BackupDatabase">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/BackupDatabase" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="BusinessService">
+    <port name="BusinessServiceSoap" binding="s0:BusinessServiceSoap">
+      <soap:address location="http://localhost/smartService/BusinessService.asmx" />
+    </port>
+  </service>
+</definitions>

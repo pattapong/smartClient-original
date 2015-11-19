@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://ws.smartRestaurant.net" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://ws.smartRestaurant.net" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.smartRestaurant.net">
+      <s:element name="GetTableList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTableListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableListResult" type="s0:ArrayOfTableInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTableInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TableInformation" nillable="true" type="s0:TableInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TableInformation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TableID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfSeat" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTableInformation">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tableID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableInformationResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableInformationResult" type="s0:TableInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableStatus">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTableStatusResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableStatusResult" type="s0:ArrayOfTableStatus" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTableStatus">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TableStatus" nillable="true" type="s0:TableStatus" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TableStatus">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="TableID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="InUse" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </types>
+  <message name="GetTableListSoapIn">
+    <part name="parameters" element="s0:GetTableList" />
+  </message>
+  <message name="GetTableListSoapOut">
+    <part name="parameters" element="s0:GetTableListResponse" />
+  </message>
+  <message name="GetTableInformationSoapIn">
+    <part name="parameters" element="s0:GetTableInformation" />
+  </message>
+  <message name="GetTableInformationSoapOut">
+    <part name="parameters" element="s0:GetTableInformationResponse" />
+  </message>
+  <message name="GetTableStatusSoapIn">
+    <part name="parameters" element="s0:GetTableStatus" />
+  </message>
+  <message name="GetTableStatusSoapOut">
+    <part name="parameters" element="s0:GetTableStatusResponse" />
+  </message>
+  <portType name="TableServiceSoap">
+    <operation name="GetTableList">
+      <input message="s0:GetTableListSoapIn" />
+      <output message="s0:GetTableListSoapOut" />
+    </operation>
+    <operation name="GetTableInformation">
+      <input message="s0:GetTableInformationSoapIn" />
+      <output message="s0:GetTableInformationSoapOut" />
+    </operation>
+    <operation name="GetTableStatus">
+      <input message="s0:GetTableStatusSoapIn" />
+      <output message="s0:GetTableStatusSoapOut" />
+    </operation>
+  </portType>
+  <binding name="TableServiceSoap" type="s0:TableServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetTableList">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetTableList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTableInformation">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetTableInformation" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTableStatus">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetTableStatus" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="TableService">
+    <port name="TableServiceSoap" binding="s0:TableServiceSoap">
+      <soap:address location="http://localhost/smartService/TableService.asmx" />
+    </port>
+  </service>
+</definitions>

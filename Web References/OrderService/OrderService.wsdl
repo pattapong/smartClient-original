@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://ws.smartRestaurant.net" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://ws.smartRestaurant.net" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.smartRestaurant.net">
+      <s:element name="GetOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="tableID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderResult" type="s0:OrderInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="OrderInformation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="OrderTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="TableID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmployeeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOfGuest" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseOrderDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CreateDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bills" type="s0:ArrayOfOrderBill" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrderBill">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderBill" nillable="true" type="s0:OrderBill" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderBill">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderBillID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="BillID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmployeeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="CloseBillDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="s0:ArrayOfOrderBillItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrderBillItem">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderBillItem" nillable="true" type="s0:OrderBillItem" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderBillItem">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BillDetailID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="MenuID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Unit" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="DefaultOption" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Status" type="s:unsignedByte" />
+          <s:element minOccurs="0" maxOccurs="1" name="Message" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ServeTime" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="CancelReasonID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmployeeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChangeFlag" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ItemChoices" type="s0:ArrayOfOrderItemChoice" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrderItemChoice">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderItemChoice" nillable="true" type="s0:OrderItemChoice" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderItemChoice">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OptionID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="ChoiceID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOrderByOrderID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrderByOrderIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrderByOrderIDResult" type="s0:OrderInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableReference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableReferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableReferenceResult" type="s0:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfInt">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="int" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetTableReference">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="tableIDList" type="s0:ArrayOfInt" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTableReferenceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetTableReferenceResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderInfo" type="s0:OrderInformation" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustFullName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendOrderResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendOrderPrint">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="orderInfo" type="s0:OrderInformation" />
+            <s:element minOccurs="0" maxOccurs="1" name="CustFullName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="print" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendOrderPrintResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendOrderPrintResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendOrderBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Bill" type="s0:OrderBill" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendOrderBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendOrderBillResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTakeOutList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTakeOutListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTakeOutListResult" type="s0:ArrayOfTakeOutInformation" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTakeOutInformation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TakeOutInformation" nillable="true" type="s0:TakeOutInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TakeOutInformation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="CustInfo" type="s0:CustomerInformation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CustomerInformation">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CustID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Telephone" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Description" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PrintReceipt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OrderBillID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintReceiptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PrintReceiptResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OrderBillID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PrintBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="PrintBillResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReprintBill">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="OrderBillID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ReprintBillResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ReprintBillResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCancelReason">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCancelReasonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCancelReasonResult" type="s0:ArrayOfCancelReason" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCancelReason">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CancelReason" nillable="true" type="s0:CancelReason" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CancelReason">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="CancelReasonID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Reason" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBillDetailWaitingList">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBillDetailWaitingListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBillDetailWaitingListResult" type="s0:ArrayOfOrderWaiting" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfOrderWaiting">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderWaiting" nillable="true" type="s0:OrderWaiting" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderWaiting">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="OrderID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Items" type="s0:ArrayOfOrderBillItemWaiting" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOrderBillItemWaiting">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OrderBillItemWaiting" nillable="true" type="s0:OrderBillItemWaiting" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OrderBillItemWaiting">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="BillDetailID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="MenuKeyID" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Unit" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Choice" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ServeWaitingOrder">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="billDetailID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ServeWaitingOrderResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ServeWaitingOrderResult" type="s0:ArrayOfOrderWaiting" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="GetOrderSoapIn">
+    <part name="parameters" element="s0:GetOrder" />
+  </message>
+  <message name="GetOrderSoapOut">
+    <part name="parameters" element="s0:GetOrderResponse" />
+  </message>
+  <message name="GetOrderByOrderIDSoapIn">
+    <part name="parameters" element="s0:GetOrderByOrderID" />
+  </message>
+  <message name="GetOrderByOrderIDSoapOut">
+    <part name="parameters" element="s0:GetOrderByOrderIDResponse" />
+  </message>
+  <message name="GetTableReferenceSoapIn">
+    <part name="parameters" element="s0:GetTableReference" />
+  </message>
+  <message name="GetTableReferenceSoapOut">
+    <part name="parameters" element="s0:GetTableReferenceResponse" />
+  </message>
+  <message name="SetTableReferenceSoapIn">
+    <part name="parameters" element="s0:SetTableReference" />
+  </message>
+  <message name="SetTableReferenceSoapOut">
+    <part name="parameters" element="s0:SetTableReferenceResponse" />
+  </message>
+  <message name="SendOrderSoapIn">
+    <part name="parameters" element="s0:SendOrder" />
+  </message>
+  <message name="SendOrderSoapOut">
+    <part name="parameters" element="s0:SendOrderResponse" />
+  </message>
+  <message name="SendOrderPrintSoapIn">
+    <part name="parameters" element="s0:SendOrderPrint" />
+  </message>
+  <message name="SendOrderPrintSoapOut">
+    <part name="parameters" element="s0:SendOrderPrintResponse" />
+  </message>
+  <message name="SendOrderBillSoapIn">
+    <part name="parameters" element="s0:SendOrderBill" />
+  </message>
+  <message name="SendOrderBillSoapOut">
+    <part name="parameters" element="s0:SendOrderBillResponse" />
+  </message>
+  <message name="GetTakeOutListSoapIn">
+    <part name="parameters" element="s0:GetTakeOutList" />
+  </message>
+  <message name="GetTakeOutListSoapOut">
+    <part name="parameters" element="s0:GetTakeOutListResponse" />
+  </message>
+  <message name="PrintReceiptSoapIn">
+    <part name="parameters" element="s0:PrintReceipt" />
+  </message>
+  <message name="PrintReceiptSoapOut">
+    <part name="parameters" element="s0:PrintReceiptResponse" />
+  </message>
+  <message name="PrintBillSoapIn">
+    <part name="parameters" element="s0:PrintBill" />
+  </message>
+  <message name="PrintBillSoapOut">
+    <part name="parameters" element="s0:PrintBillResponse" />
+  </message>
+  <message name="ReprintBillSoapIn">
+    <part name="parameters" element="s0:ReprintBill" />
+  </message>
+  <message name="ReprintBillSoapOut">
+    <part name="parameters" element="s0:ReprintBillResponse" />
+  </message>
+  <message name="GetCancelReasonSoapIn">
+    <part name="parameters" element="s0:GetCancelReason" />
+  </message>
+  <message name="GetCancelReasonSoapOut">
+    <part name="parameters" element="s0:GetCancelReasonResponse" />
+  </message>
+  <message name="GetBillDetailWaitingListSoapIn">
+    <part name="parameters" element="s0:GetBillDetailWaitingList" />
+  </message>
+  <message name="GetBillDetailWaitingListSoapOut">
+    <part name="parameters" element="s0:GetBillDetailWaitingListResponse" />
+  </message>
+  <message name="ServeWaitingOrderSoapIn">
+    <part name="parameters" element="s0:ServeWaitingOrder" />
+  </message>
+  <message name="ServeWaitingOrderSoapOut">
+    <part name="parameters" element="s0:ServeWaitingOrderResponse" />
+  </message>
+  <portType name="OrderServiceSoap">
+    <operation name="GetOrder">
+      <input message="s0:GetOrderSoapIn" />
+      <output message="s0:GetOrderSoapOut" />
+    </operation>
+    <operation name="GetOrderByOrderID">
+      <input message="s0:GetOrderByOrderIDSoapIn" />
+      <output message="s0:GetOrderByOrderIDSoapOut" />
+    </operation>
+    <operation name="GetTableReference">
+      <input message="s0:GetTableReferenceSoapIn" />
+      <output message="s0:GetTableReferenceSoapOut" />
+    </operation>
+    <operation name="SetTableReference">
+      <input message="s0:SetTableReferenceSoapIn" />
+      <output message="s0:SetTableReferenceSoapOut" />
+    </operation>
+    <operation name="SendOrder">
+      <input message="s0:SendOrderSoapIn" />
+      <output message="s0:SendOrderSoapOut" />
+    </operation>
+    <operation name="SendOrderPrint">
+      <input message="s0:SendOrderPrintSoapIn" />
+      <output message="s0:SendOrderPrintSoapOut" />
+    </operation>
+    <operation name="SendOrderBill">
+      <input message="s0:SendOrderBillSoapIn" />
+      <output message="s0:SendOrderBillSoapOut" />
+    </operation>
+    <operation name="GetTakeOutList">
+      <input message="s0:GetTakeOutListSoapIn" />
+      <output message="s0:GetTakeOutListSoapOut" />
+    </operation>
+    <operation name="PrintReceipt">
+      <input message="s0:PrintReceiptSoapIn" />
+      <output message="s0:PrintReceiptSoapOut" />
+    </operation>
+    <operation name="PrintBill">
+      <input message="s0:PrintBillSoapIn" />
+      <output message="s0:PrintBillSoapOut" />
+    </operation>
+    <operation name="ReprintBill">
+      <input message="s0:ReprintBillSoapIn" />
+      <output message="s0:ReprintBillSoapOut" />
+    </operation>
+    <operation name="GetCancelReason">
+      <input message="s0:GetCancelReasonSoapIn" />
+      <output message="s0:GetCancelReasonSoapOut" />
+    </operation>
+    <operation name="GetBillDetailWaitingList">
+      <input message="s0:GetBillDetailWaitingListSoapIn" />
+      <output message="s0:GetBillDetailWaitingListSoapOut" />
+    </operation>
+    <operation name="ServeWaitingOrder">
+      <input message="s0:ServeWaitingOrderSoapIn" />
+      <output message="s0:ServeWaitingOrderSoapOut" />
+    </operation>
+  </portType>
+  <binding name="OrderServiceSoap" type="s0:OrderServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetOrder">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetOrder" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetOrderByOrderID">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetOrderByOrderID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTableReference">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetTableReference" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetTableReference">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/SetTableReference" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SendOrder">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/SendOrder" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SendOrderPrint">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/SendOrderPrint" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SendOrderBill">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/SendOrderBill" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTakeOutList">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetTakeOutList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PrintReceipt">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/PrintReceipt" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="PrintBill">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/PrintBill" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ReprintBill">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/ReprintBill" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCancelReason">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetCancelReason" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetBillDetailWaitingList">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetBillDetailWaitingList" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="ServeWaitingOrder">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/ServeWaitingOrder" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="OrderService">
+    <port name="OrderServiceSoap" binding="s0:OrderServiceSoap">
+      <soap:address location="http://localhost/smartService/OrderService.asmx" />
+    </port>
+  </service>
+</definitions>

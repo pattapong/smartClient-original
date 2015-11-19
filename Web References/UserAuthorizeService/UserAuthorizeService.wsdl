@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://ws.smartRestaurant.net" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://ws.smartRestaurant.net" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.smartRestaurant.net">
+      <s:element name="CheckLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="employeeID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckLoginResult" type="s0:UserProfile" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="UserProfile">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="EmployeeTypeID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CheckLogout">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="employeeID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckLogoutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckLogoutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="CheckLoginSoapIn">
+    <part name="parameters" element="s0:CheckLogin" />
+  </message>
+  <message name="CheckLoginSoapOut">
+    <part name="parameters" element="s0:CheckLoginResponse" />
+  </message>
+  <message name="CheckLogoutSoapIn">
+    <part name="parameters" element="s0:CheckLogout" />
+  </message>
+  <message name="CheckLogoutSoapOut">
+    <part name="parameters" element="s0:CheckLogoutResponse" />
+  </message>
+  <portType name="UserAuthorizeServiceSoap">
+    <operation name="CheckLogin">
+      <input message="s0:CheckLoginSoapIn" />
+      <output message="s0:CheckLoginSoapOut" />
+    </operation>
+    <operation name="CheckLogout">
+      <input message="s0:CheckLogoutSoapIn" />
+      <output message="s0:CheckLogoutSoapOut" />
+    </operation>
+  </portType>
+  <binding name="UserAuthorizeServiceSoap" type="s0:UserAuthorizeServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="CheckLogin">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/CheckLogin" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="CheckLogout">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/CheckLogout" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="UserAuthorizeService">
+    <port name="UserAuthorizeServiceSoap" binding="s0:UserAuthorizeServiceSoap">
+      <soap:address location="http://localhost/smartService/UserAuthorizeService.asmx" />
+    </port>
+  </service>
+</definitions>

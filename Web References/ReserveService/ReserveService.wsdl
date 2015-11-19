@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://ws.smartRestaurant.net" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://ws.smartRestaurant.net" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.smartRestaurant.net">
+      <s:element name="GetTableReserve">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="date" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableReserveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableReserveResult" type="s0:ArrayOfTableReserve" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfTableReserve">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TableReserve" nillable="true" type="s0:TableReserve" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TableReserve">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="reserveTableID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="tableID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="reserveDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="seat" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="customerID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="custFirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="custMiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="custLastName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetTableReserve">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reserve" type="s0:TableReserve" />
+            <s:element minOccurs="0" maxOccurs="1" name="custFullName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetTableReserveResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetTableReserveResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetReserveCancel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reserveID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetReserveCancelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetReserveCancelResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetReserveDinIn">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="reserveID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TableID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetReserveDinInResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetReserveDinInResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="GetTableReserveSoapIn">
+    <part name="parameters" element="s0:GetTableReserve" />
+  </message>
+  <message name="GetTableReserveSoapOut">
+    <part name="parameters" element="s0:GetTableReserveResponse" />
+  </message>
+  <message name="SetTableReserveSoapIn">
+    <part name="parameters" element="s0:SetTableReserve" />
+  </message>
+  <message name="SetTableReserveSoapOut">
+    <part name="parameters" element="s0:SetTableReserveResponse" />
+  </message>
+  <message name="SetReserveCancelSoapIn">
+    <part name="parameters" element="s0:SetReserveCancel" />
+  </message>
+  <message name="SetReserveCancelSoapOut">
+    <part name="parameters" element="s0:SetReserveCancelResponse" />
+  </message>
+  <message name="SetReserveDinInSoapIn">
+    <part name="parameters" element="s0:SetReserveDinIn" />
+  </message>
+  <message name="SetReserveDinInSoapOut">
+    <part name="parameters" element="s0:SetReserveDinInResponse" />
+  </message>
+  <portType name="ReserveServiceSoap">
+    <operation name="GetTableReserve">
+      <input message="s0:GetTableReserveSoapIn" />
+      <output message="s0:GetTableReserveSoapOut" />
+    </operation>
+    <operation name="SetTableReserve">
+      <input message="s0:SetTableReserveSoapIn" />
+      <output message="s0:SetTableReserveSoapOut" />
+    </operation>
+    <operation name="SetReserveCancel">
+      <input message="s0:SetReserveCancelSoapIn" />
+      <output message="s0:SetReserveCancelSoapOut" />
+    </operation>
+    <operation name="SetReserveDinIn">
+      <input message="s0:SetReserveDinInSoapIn" />
+      <output message="s0:SetReserveDinInSoapOut" />
+    </operation>
+  </portType>
+  <binding name="ReserveServiceSoap" type="s0:ReserveServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetTableReserve">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetTableReserve" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetTableReserve">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/SetTableReserve" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetReserveCancel">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/SetReserveCancel" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SetReserveDinIn">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/SetReserveDinIn" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ReserveService">
+    <port name="ReserveServiceSoap" binding="s0:ReserveServiceSoap">
+      <soap:address location="http://localhost/smartService/ReserveService.asmx" />
+    </port>
+  </service>
+</definitions>

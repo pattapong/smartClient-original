@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://ws.smartRestaurant.net" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://ws.smartRestaurant.net" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.smartRestaurant.net">
+      <s:element name="GetInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderBillID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvoiceResult" type="s0:Invoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="Invoice">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="invoiceID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="paymentMethodID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="orderBillID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="point" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalPrice" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="tax1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="tax2" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalDiscount" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalReceive" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="employeeID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="refInvoice" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="discounts" type="s0:ArrayOfInvoiceDiscount" />
+          <s:element minOccurs="0" maxOccurs="1" name="payments" type="s0:ArrayOfInvoicePayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoiceDiscount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoiceDiscount" nillable="true" type="s0:InvoiceDiscount" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoiceDiscount">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="invoiceDiscountID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="invoiceID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="promotionID" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoicePayment">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoicePayment" nillable="true" type="s0:InvoicePayment" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoicePayment">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="paymentMethodID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="receive" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetInvoiceByID">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="invoiceID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInvoiceByIDResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInvoiceByIDResult" type="s0:Invoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendInvoice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="invoice" type="s0:Invoice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SendInvoiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SendInvoiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetComputeBillPrice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="orderBillID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetComputeBillPriceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetComputeBillPriceResult" type="s0:BillPrice" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="BillPrice">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="totalPrice" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalDiscount" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalTax1" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalTax2" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetTodayTip">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetTodayTipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetTodayTipResult" type="s:double" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDescription">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="id" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDescriptionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDescriptionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </types>
+  <message name="GetInvoiceSoapIn">
+    <part name="parameters" element="s0:GetInvoice" />
+  </message>
+  <message name="GetInvoiceSoapOut">
+    <part name="parameters" element="s0:GetInvoiceResponse" />
+  </message>
+  <message name="GetInvoiceByIDSoapIn">
+    <part name="parameters" element="s0:GetInvoiceByID" />
+  </message>
+  <message name="GetInvoiceByIDSoapOut">
+    <part name="parameters" element="s0:GetInvoiceByIDResponse" />
+  </message>
+  <message name="SendInvoiceSoapIn">
+    <part name="parameters" element="s0:SendInvoice" />
+  </message>
+  <message name="SendInvoiceSoapOut">
+    <part name="parameters" element="s0:SendInvoiceResponse" />
+  </message>
+  <message name="GetComputeBillPriceSoapIn">
+    <part name="parameters" element="s0:GetComputeBillPrice" />
+  </message>
+  <message name="GetComputeBillPriceSoapOut">
+    <part name="parameters" element="s0:GetComputeBillPriceResponse" />
+  </message>
+  <message name="GetTodayTipSoapIn">
+    <part name="parameters" element="s0:GetTodayTip" />
+  </message>
+  <message name="GetTodayTipSoapOut">
+    <part name="parameters" element="s0:GetTodayTipResponse" />
+  </message>
+  <message name="GetDescriptionSoapIn">
+    <part name="parameters" element="s0:GetDescription" />
+  </message>
+  <message name="GetDescriptionSoapOut">
+    <part name="parameters" element="s0:GetDescriptionResponse" />
+  </message>
+  <portType name="CheckBillServiceSoap">
+    <operation name="GetInvoice">
+      <input message="s0:GetInvoiceSoapIn" />
+      <output message="s0:GetInvoiceSoapOut" />
+    </operation>
+    <operation name="GetInvoiceByID">
+      <input message="s0:GetInvoiceByIDSoapIn" />
+      <output message="s0:GetInvoiceByIDSoapOut" />
+    </operation>
+    <operation name="SendInvoice">
+      <input message="s0:SendInvoiceSoapIn" />
+      <output message="s0:SendInvoiceSoapOut" />
+    </operation>
+    <operation name="GetComputeBillPrice">
+      <input message="s0:GetComputeBillPriceSoapIn" />
+      <output message="s0:GetComputeBillPriceSoapOut" />
+    </operation>
+    <operation name="GetTodayTip">
+      <input message="s0:GetTodayTipSoapIn" />
+      <output message="s0:GetTodayTipSoapOut" />
+    </operation>
+    <operation name="GetDescription">
+      <input message="s0:GetDescriptionSoapIn" />
+      <output message="s0:GetDescriptionSoapOut" />
+    </operation>
+  </portType>
+  <binding name="CheckBillServiceSoap" type="s0:CheckBillServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetInvoice">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetInvoice" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetInvoiceByID">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetInvoiceByID" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="SendInvoice">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/SendInvoice" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetComputeBillPrice">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetComputeBillPrice" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetTodayTip">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetTodayTip" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetDescription">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetDescription" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="CheckBillService">
+    <port name="CheckBillServiceSoap" binding="s0:CheckBillServiceSoap">
+      <soap:address location="http://localhost/smartService/CheckBillService.asmx" />
+    </port>
+  </service>
+</definitions>

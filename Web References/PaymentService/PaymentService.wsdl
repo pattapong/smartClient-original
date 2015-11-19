@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s0="http://ws.smartRestaurant.net" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://ws.smartRestaurant.net" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://ws.smartRestaurant.net">
+      <s:element name="GetPaymentMethods">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetPaymentMethodsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetPaymentMethodsResult" type="s0:ArrayOfPaymentMethod" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPaymentMethod">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PaymentMethod" nillable="true" type="s0:PaymentMethod" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PaymentMethod">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="paymentMethodID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="paymentMethodName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCoupons">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCouponsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCouponsResult" type="s0:ArrayOfPromotionCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfPromotionCard">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PromotionCard" nillable="true" type="s0:PromotionCard" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PromotionCard">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="promotionID" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetGiftVouchers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetGiftVouchersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGiftVouchersResult" type="s0:ArrayOfPromotionCard" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDiscounts">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetDiscountsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDiscountsResult" type="s0:ArrayOfDiscount" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfDiscount">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Discount" nillable="true" type="s0:Discount" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Discount">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="promotionID" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="promotionType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="description" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="amount" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="discountPercent" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="discountAmount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </types>
+  <message name="GetPaymentMethodsSoapIn">
+    <part name="parameters" element="s0:GetPaymentMethods" />
+  </message>
+  <message name="GetPaymentMethodsSoapOut">
+    <part name="parameters" element="s0:GetPaymentMethodsResponse" />
+  </message>
+  <message name="GetCouponsSoapIn">
+    <part name="parameters" element="s0:GetCoupons" />
+  </message>
+  <message name="GetCouponsSoapOut">
+    <part name="parameters" element="s0:GetCouponsResponse" />
+  </message>
+  <message name="GetGiftVouchersSoapIn">
+    <part name="parameters" element="s0:GetGiftVouchers" />
+  </message>
+  <message name="GetGiftVouchersSoapOut">
+    <part name="parameters" element="s0:GetGiftVouchersResponse" />
+  </message>
+  <message name="GetDiscountsSoapIn">
+    <part name="parameters" element="s0:GetDiscounts" />
+  </message>
+  <message name="GetDiscountsSoapOut">
+    <part name="parameters" element="s0:GetDiscountsResponse" />
+  </message>
+  <portType name="PaymentServiceSoap">
+    <operation name="GetPaymentMethods">
+      <input message="s0:GetPaymentMethodsSoapIn" />
+      <output message="s0:GetPaymentMethodsSoapOut" />
+    </operation>
+    <operation name="GetCoupons">
+      <input message="s0:GetCouponsSoapIn" />
+      <output message="s0:GetCouponsSoapOut" />
+    </operation>
+    <operation name="GetGiftVouchers">
+      <input message="s0:GetGiftVouchersSoapIn" />
+      <output message="s0:GetGiftVouchersSoapOut" />
+    </operation>
+    <operation name="GetDiscounts">
+      <input message="s0:GetDiscountsSoapIn" />
+      <output message="s0:GetDiscountsSoapOut" />
+    </operation>
+  </portType>
+  <binding name="PaymentServiceSoap" type="s0:PaymentServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    <operation name="GetPaymentMethods">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetPaymentMethods" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetCoupons">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetCoupons" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetGiftVouchers">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetGiftVouchers" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="GetDiscounts">
+      <soap:operation soapAction="http://ws.smartRestaurant.net/GetDiscounts" style="document" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="PaymentService">
+    <port name="PaymentServiceSoap" binding="s0:PaymentServiceSoap">
+      <soap:address location="http://localhost/smartService/PaymentService.asmx" />
+    </port>
+  </service>
+</definitions>
